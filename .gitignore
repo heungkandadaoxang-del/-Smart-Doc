@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+*.sqlite
+*.sqlite3
+*.db
+secure_bootstrap_credential.json
+lhse_edoc.db*

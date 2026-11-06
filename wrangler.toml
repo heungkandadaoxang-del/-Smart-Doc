@@ -1,0 +1,46 @@
+# Cloudflare Workers & Pages Configuration
+# Project: Smart E-Doc-LHSE-V01
+# Organization: Lao State Enterprise Holding (LHSE)
+
+name = "smart-edoc-lhse-v01"
+main = "worker/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# Cloudflare D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_name = "lhse-edoc-d1"
+database_id = "d1-lhse-edoc-production-db-001"
+migrations_dir = "migrations"
+
+# Cloudflare R2 Storage Binding for Private Electronic Documents
+[[r2_buckets]]
+binding = "LHSE_DOCS_STORAGE"
+bucket_name = "lhse-edoc-private-documents"
+preview_bucket_name = "lhse-edoc-preview-documents"
+
+# Cloudflare R2 Storage Binding for Disaster Recovery Backup Archives
+[[r2_buckets]]
+binding = "LHSE_BACKUP_STORAGE"
+bucket_name = "lhse-edoc-backup-archives"
+preview_bucket_name = "lhse-edoc-preview-backups"
+
+# Automated Scheduled Serverless Function Cron Triggers
+# Incremental D1 & R2 backups every 6 hours (00:00, 06:00, 12:00, 18:00 Asia/Vientiane)
+[triggers]
+crons = ["0 */6 * * *"]
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+ORGANIZATION_NAME = "Lao State Enterprise Holding (LHSE)"
+ORGANIZATION_CODE = "LHSE"
+TIMEZONE = "Asia/Vientiane"
+SUPER_ADMIN_EMAIL = "nokohn@gmail.com"
+SESSION_LIFETIME_HOURS = "12"
+BACKUP_RETENTION_DAYS = "30"
+
+# Security Headers & Rules
+[observability]
+enabled = true

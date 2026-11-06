@@ -1,0 +1,6 @@
+{
+  "name": "Smart E-Doc-LHSE-V01",
+  "description": "ລະບົບບໍລິຫານເອກະສານເອເລັກໂຕຣນິກອັດສະລິຍະ ລັດວິສາຫະກິດຖືຮຸ້ນລາວ - Smart Electronic Document Management System for Lao State Enterprise Holding (LHSE)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

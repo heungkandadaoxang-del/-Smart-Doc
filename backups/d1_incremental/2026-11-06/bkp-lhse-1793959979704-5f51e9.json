@@ -1,0 +1,1354 @@
+{
+  "backupId": "bkp-lhse-1793959979704-5f51e9",
+  "version": "1.0.0-lhse-edoc",
+  "environment": "Cloudflare D1 & R2 Production",
+  "organization": "Lao State Enterprise Holding (LHSE)",
+  "timezone": "Asia/Vientiane (UTC+7)",
+  "timestampIso": "2026-11-06T10:12:59.707Z",
+  "timestampVientiane": "11/6/2026, 5:12:59 PM",
+  "triggerSource": "MANUAL_TRIGGER",
+  "totalTables": 17,
+  "totalRecords": 109,
+  "r2AttachmentCount": 0,
+  "r2Manifest": [],
+  "tables": {
+    "organizations": {
+      "schema": "CREATE TABLE organizations (\n    id TEXT PRIMARY KEY,\n    name_lo TEXT NOT NULL,\n    name_en TEXT NOT NULL,\n    short_name TEXT NOT NULL DEFAULT 'LHSE',\n    tax_id TEXT,\n    address_lo TEXT NOT NULL,\n    address_en TEXT,\n    phone TEXT,\n    email TEXT,\n    website TEXT,\n    logo_url TEXT,\n    timezone TEXT NOT NULL DEFAULT 'Asia/Vientiane',\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP\n)",
+      "count": 1,
+      "rows": [
+        {
+          "id": "org-lhse-main",
+          "name_lo": "ລັດວິສາຫະກິດຖືຮຸ້ນລາວ",
+          "name_en": "Lao State Enterprise Holding",
+          "short_name": "LHSE",
+          "tax_id": "01-00023489",
+          "address_lo": "ຖະໜົນລ້ານຊ້າງ, ບ້ານຫັດສະດີ, ເມືອງຈັນທະບູລີ, ນະຄອນຫຼວງວຽງຈັນ",
+          "address_en": "Lane Xang Avenue, Hatsady Village, Chanthabouly District, Vientiane Capital",
+          "phone": "+856 21 213 456",
+          "email": "info@lhse.gov.la",
+          "website": "https://lhse.gov.la",
+          "logo_url": null,
+          "timezone": "Asia/Vientiane",
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:12:48"
+        }
+      ]
+    },
+    "departments": {
+      "schema": "CREATE TABLE departments (\n    id TEXT PRIMARY KEY,\n    org_id TEXT NOT NULL,\n    code TEXT NOT NULL UNIQUE,\n    name_lo TEXT NOT NULL,\n    name_en TEXT NOT NULL,\n    description_lo TEXT,\n    description_en TEXT,\n    designated_admin_name TEXT,\n    head_user_id TEXT,\n    phone TEXT,\n    email TEXT,\n    is_active INTEGER NOT NULL DEFAULT 1,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (org_id) REFERENCES organizations(id) ON DELETE CASCADE\n)",
+      "count": 5,
+      "rows": [
+        {
+          "id": "dept-adm-fin",
+          "org_id": "org-lhse-main",
+          "code": "ADM_FIN",
+          "name_lo": "ພະແນກບໍລິຫານ ບັນຊີ ແລະ ການເງິນ",
+          "name_en": "Administration, Accounting & Finance Department",
+          "description_lo": "ຄຸ້ມຄອງວຽກງານບໍລິຫານທົ່ວໄປ, ບັນຊີ, ການເງິນ ແລະ ງົບປະມານ",
+          "description_en": "General administration, accounting, corporate finance and budgeting",
+          "designated_admin_name": "ນາງ ທິບດາວອນ",
+          "head_user_id": "user-admin-adm_fin",
+          "phone": null,
+          "email": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:13:21"
+        },
+        {
+          "id": "dept-dev",
+          "org_id": "org-lhse-main",
+          "code": "DEV",
+          "name_lo": "ພະແນກພັດທະນາ",
+          "name_en": "Development Department",
+          "description_lo": "ວຽກງານພັດທະນາໂຄງການລົງທຶນ, ພະລັງງານ ແລະ ຍຸດທະສາດການເຕີບໂຕ",
+          "description_en": "Investment projects, power asset development and strategic growth",
+          "designated_admin_name": "ນາງ ໜິງ",
+          "head_user_id": null,
+          "phone": null,
+          "email": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "dept-bus-plan",
+          "org_id": "org-lhse-main",
+          "code": "BUS_PLAN",
+          "name_lo": "ພະແນກທຸລະກິດແຜນການ",
+          "name_en": "Business Planning Department",
+          "description_lo": "ວຽກງານວາງແຜນທຸລະກິດ, ຕິດຕາມປະເມີນຜົນ ແລະ ການຮ່ວມທຶນ",
+          "description_en": "Business planning, performance monitoring and joint venture coordination",
+          "designated_admin_name": "ສຸພາລັກ",
+          "head_user_id": null,
+          "phone": null,
+          "email": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "dept-fly-ash",
+          "org_id": "org-lhse-main",
+          "code": "FLY_ASH",
+          "name_lo": "ພະແນກທຸລະກິດຂີ້ເທົ່າລອຍ",
+          "name_en": "Fly Ash Business Department",
+          "description_lo": "ຄຸ້ມຄອງທຸລະກິດຈຳໜ່າຍຜະລິດຕະພັນຂີ້ເທົ່າລອຍ ແລະ ສັນຍາການຄ້າ",
+          "description_en": "Fly ash commercial operations, product distribution and trade agreements",
+          "designated_admin_name": "ທ້າວ ກິລິນທອນ",
+          "head_user_id": null,
+          "phone": null,
+          "email": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "dept-int-audit",
+          "org_id": "org-lhse-main",
+          "code": "INT_AUDIT",
+          "name_lo": "ພະແນກກວດສອບພາຍໃນ",
+          "name_en": "Internal Audit Department",
+          "description_lo": "ກວດສອບຄວາມຖືກຕ້ອງ, ປະຕິບັດຕາມລະບຽບການ ແລະ ການຄຸ້ມຄອງຄວາມສ່ຽງ",
+          "description_en": "Internal compliance audit, financial verification and risk governance",
+          "designated_admin_name": "ທ້າວ ວິລະປັນຍາ",
+          "head_user_id": null,
+          "phone": null,
+          "email": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 07:12:48"
+        }
+      ]
+    },
+    "positions": {
+      "schema": "CREATE TABLE positions (\n    id TEXT PRIMARY KEY,\n    dept_id TEXT,\n    title_lo TEXT NOT NULL,\n    title_en TEXT NOT NULL,\n    level INTEGER NOT NULL DEFAULT 1,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE SET NULL\n)",
+      "count": 0,
+      "rows": []
+    },
+    "positions_v2": {
+      "schema": "CREATE TABLE positions_v2 (\n    id TEXT PRIMARY KEY,\n    org_id TEXT NOT NULL DEFAULT 'org-lhse-main',\n    dept_id TEXT,\n    code TEXT NOT NULL UNIQUE,\n    title_lo TEXT NOT NULL,\n    title_en TEXT NOT NULL,\n    description_lo TEXT,\n    description_en TEXT,\n    level INTEGER NOT NULL DEFAULT 1,\n    max_headcount INTEGER NOT NULL DEFAULT 1,\n    reports_to_position_id TEXT,\n    is_active INTEGER NOT NULL DEFAULT 1,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (org_id) REFERENCES organizations(id) ON DELETE CASCADE,\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE SET NULL,\n    FOREIGN KEY (reports_to_position_id) REFERENCES positions_v2(id) ON DELETE SET NULL\n)",
+      "count": 23,
+      "rows": [
+        {
+          "id": "pos-md",
+          "org_id": "org-lhse-main",
+          "dept_id": null,
+          "code": "EXEC_MD",
+          "title_lo": "ຜູ້ອຳນວຍການໃຫຍ່",
+          "title_en": "Managing Director",
+          "description_lo": null,
+          "description_en": null,
+          "level": 1,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dmd-adm",
+          "org_id": "org-lhse-main",
+          "dept_id": null,
+          "code": "EXEC_DMD_ADM",
+          "title_lo": "ຮອງຜູ້ອຳນວຍການໃຫຍ່ ສາຍງານບໍລິຫານ & ການເງິນ",
+          "title_en": "Deputy Managing Director (Admin & Finance)",
+          "description_lo": null,
+          "description_en": null,
+          "level": 2,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dmd-biz",
+          "org_id": "org-lhse-main",
+          "dept_id": null,
+          "code": "EXEC_DMD_BIZ",
+          "title_lo": "ຮອງຜູ້ອຳນວຍການໃຫຍ່ ສາຍງານທຸລະກິດ & ພັດທະນາ",
+          "title_en": "Deputy Managing Director (Business & Dev)",
+          "description_lo": null,
+          "description_en": null,
+          "level": 2,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-head-adm-fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "code": "HEAD_ADM_FIN",
+          "title_lo": "ຫົວໜ້າພະແນກບໍລິຫານ ບັນຊີ ແລະ ການເງິນ",
+          "title_en": "Head of Administration, Accounting & Finance",
+          "description_lo": null,
+          "description_en": null,
+          "level": 3,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dep-adm-fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "code": "DEP_ADM_FIN",
+          "title_lo": "ຮອງຫົວໜ້າພະແນກບໍລິຫານ ບັນຊີ ແລະ ການເງິນ",
+          "title_en": "Deputy Head of Administration & Finance",
+          "description_lo": null,
+          "description_en": null,
+          "level": 4,
+          "max_headcount": 2,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-acc-adm-fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "code": "SPEC_ACC",
+          "title_lo": "ຫົວໜ້າຂະແໜງບັນຊີ-ການເງິນ",
+          "title_en": "Senior Accounting & Finance Specialist",
+          "description_lo": null,
+          "description_en": null,
+          "level": 5,
+          "max_headcount": 3,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-off-adm-fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "code": "OFF_ADM",
+          "title_lo": "ວິຊາການບໍລິຫານທົ່ວໄປ",
+          "title_en": "General Administration Officer",
+          "description_lo": null,
+          "description_en": null,
+          "level": 6,
+          "max_headcount": 5,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-head-dev",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "code": "HEAD_DEV",
+          "title_lo": "ຫົວໜ້າພະແນກພັດທະນາ",
+          "title_en": "Head of Development",
+          "description_lo": null,
+          "description_en": null,
+          "level": 3,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dep-dev",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "code": "DEP_DEV",
+          "title_lo": "ຮອງຫົວໜ້າພະແນກພັດທະນາ",
+          "title_en": "Deputy Head of Development",
+          "description_lo": null,
+          "description_en": null,
+          "level": 4,
+          "max_headcount": 2,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-spec-dev",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "code": "SPEC_DEV",
+          "title_lo": "ຊ່ຽວຊານພັດທະນາໂຄງການພະລັງງານ",
+          "title_en": "Senior Project Development Specialist",
+          "description_lo": null,
+          "description_en": null,
+          "level": 5,
+          "max_headcount": 4,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-off-dev",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "code": "OFF_DEV",
+          "title_lo": "ວິຊາການວິເຄາະການລົງທຶນ",
+          "title_en": "Investment Analysis Officer",
+          "description_lo": null,
+          "description_en": null,
+          "level": 6,
+          "max_headcount": 6,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-head-bus-plan",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "code": "HEAD_BUS_PLAN",
+          "title_lo": "ຫົວໜ້າພະແນກທຸລະກິດແຜນການ",
+          "title_en": "Head of Business Planning",
+          "description_lo": null,
+          "description_en": null,
+          "level": 3,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dep-bus-plan",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "code": "DEP_BUS_PLAN",
+          "title_lo": "ຮອງຫົວໜ້າພະແນກທຸລະກິດແຜນການ",
+          "title_en": "Deputy Head of Business Planning",
+          "description_lo": null,
+          "description_en": null,
+          "level": 4,
+          "max_headcount": 2,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-spec-bus-plan",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "code": "SPEC_BUS_PLAN",
+          "title_lo": "ວິຊາການວາງແຜນຍຸດທະສາດ",
+          "title_en": "Strategic Planning Specialist",
+          "description_lo": null,
+          "description_en": null,
+          "level": 5,
+          "max_headcount": 3,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-off-bus-plan",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "code": "OFF_BUS_PLAN",
+          "title_lo": "ວິຊາການຕິດຕາມແຜນທຸລະກິດ",
+          "title_en": "Business Monitoring Officer",
+          "description_lo": null,
+          "description_en": null,
+          "level": 6,
+          "max_headcount": 5,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-head-fly-ash",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "code": "HEAD_FLY_ASH",
+          "title_lo": "ຫົວໜ້າພະແນກທຸລະກິດຂີ້ເທົ່າລອຍ",
+          "title_en": "Head of Fly Ash Business",
+          "description_lo": null,
+          "description_en": null,
+          "level": 3,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dep-fly-ash",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "code": "DEP_FLY_ASH",
+          "title_lo": "ຮອງຫົວໜ້າພະແນກທຸລະກິດຂີ້ເທົ່າລອຍ",
+          "title_en": "Deputy Head of Fly Ash Business",
+          "description_lo": null,
+          "description_en": null,
+          "level": 4,
+          "max_headcount": 2,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-spec-fly-ash",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "code": "SPEC_FLY_ASH",
+          "title_lo": "ວິຊາການຄຸ້ມຄອງສັນຍາ ແລະ ການຄ້າ",
+          "title_en": "Commercial Trade Specialist",
+          "description_lo": null,
+          "description_en": null,
+          "level": 5,
+          "max_headcount": 3,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-off-fly-ash",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "code": "OFF_FLY_ASH",
+          "title_lo": "ວິຊາການຂົນສົ່ງ ແລະ ສາງສິນຄ້າ",
+          "title_en": "Logistics & Inventory Officer",
+          "description_lo": null,
+          "description_en": null,
+          "level": 6,
+          "max_headcount": 5,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-head-int-audit",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "code": "HEAD_INT_AUDIT",
+          "title_lo": "ຫົວໜ້າພະແນກກວດສອບພາຍໃນ",
+          "title_en": "Head of Internal Audit",
+          "description_lo": null,
+          "description_en": null,
+          "level": 3,
+          "max_headcount": 1,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-dep-int-audit",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "code": "DEP_INT_AUDIT",
+          "title_lo": "ຮອງຫົວໜ້າພະແນກກວດສອບພາຍໃນ",
+          "title_en": "Deputy Head of Internal Audit",
+          "description_lo": null,
+          "description_en": null,
+          "level": 4,
+          "max_headcount": 2,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-spec-int-audit",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "code": "SPEC_INT_AUDIT",
+          "title_lo": "ຜູ້ກວດສອບບັນຊີພາຍໃນອາວຸໂສ",
+          "title_en": "Senior Internal Auditor",
+          "description_lo": null,
+          "description_en": null,
+          "level": 5,
+          "max_headcount": 3,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "pos-off-int-audit",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "code": "OFF_INT_AUDIT",
+          "title_lo": "ວິຊາການກວດສອບການປະຕິບັດຕາມລະບຽບ",
+          "title_en": "Compliance Audit Officer",
+          "description_lo": null,
+          "description_en": null,
+          "level": 6,
+          "max_headcount": 4,
+          "reports_to_position_id": null,
+          "is_active": 1,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        }
+      ]
+    },
+    "roles": {
+      "schema": "CREATE TABLE roles (\n    id TEXT PRIMARY KEY,\n    code TEXT NOT NULL UNIQUE,\n    name_lo TEXT NOT NULL,\n    name_en TEXT NOT NULL,\n    description_lo TEXT,\n    description_en TEXT,\n    is_system INTEGER NOT NULL DEFAULT 0,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP\n)",
+      "count": 5,
+      "rows": [
+        {
+          "id": "role-super-admin",
+          "code": "SUPER_ADMIN",
+          "name_lo": "ຜູ້ບໍລິຫານລະບົບສູງສຸດ",
+          "name_en": "Super Admin",
+          "description_lo": "ສິດທິສູງສຸດໃນການຄຸ້ມຄອງລະບົບ ແລະ ກວດສອບທົ່ວອົງກອນ",
+          "description_en": "Full enterprise-wide access subject to audit policies",
+          "is_system": 1,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "role-dept-admin",
+          "code": "DEPT_ADMIN",
+          "name_lo": "ຫົວໜ້າພະແນກ / ຜູ້ຄຸ້ມຄອງພະແນກ",
+          "name_en": "Department Admin",
+          "description_lo": "ຄຸ້ມຄອງ ແລະ ອະນຸມັດເອກະສານສະເພາະພາຍໃນພະແນກຕົນເອງ",
+          "description_en": "Manages users and document approvals strictly within assigned department",
+          "is_system": 1,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "role-dept-staff",
+          "code": "DEPT_STAFF",
+          "name_lo": "ພະນັກງານພະແນກ",
+          "name_en": "Department Staff",
+          "description_lo": "ຮ່າງ, ສົ່ງ ແລະ ຕິດຕາມເອກະສານພາຍໃນພະແນກຕົນເອງ",
+          "description_en": "Creates, drafts and submits documents strictly within department",
+          "is_system": 1,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "role-approver",
+          "code": "APPROVER",
+          "name_lo": "ຜູ້ອະນຸມັດ / ກວດສອບ",
+          "name_en": "Document Approver",
+          "description_lo": "ກວດສອບ, ອະນຸມັດ ຫຼື ປະຕິເສດເອກະສານຕາມສາຍງານ",
+          "description_en": "Reviews, approves and signs documents assigned to them",
+          "is_system": 1,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "role-executive-viewer",
+          "code": "EXECUTIVE_VIEWER",
+          "name_lo": "ຜູ້ບໍລິຫານລະດັບສູງ (ກວດເບິ່ງ)",
+          "name_en": "Executive Viewer",
+          "description_lo": "ເບິ່ງລາຍງານ, Dashboard ແລະ ສະຖິຕິພາບລວມທົ່ວອົງກອນ (ອ່ານຢ່າງດຽວ)",
+          "description_en": "Read-only access to organizational analytics, reports and dashboards",
+          "is_system": 1,
+          "created_at": "2026-11-06 07:12:48"
+        }
+      ]
+    },
+    "permissions": {
+      "schema": "CREATE TABLE permissions (\n    id TEXT PRIMARY KEY,\n    code TEXT NOT NULL UNIQUE,\n    category TEXT NOT NULL,\n    name_lo TEXT NOT NULL,\n    name_en TEXT NOT NULL,\n    description TEXT\n)",
+      "count": 14,
+      "rows": [
+        {
+          "id": "perm-doc-view",
+          "code": "doc:view",
+          "category": "DOCUMENT",
+          "name_lo": "ເບິ່ງເອກະສານ",
+          "name_en": "View Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-create",
+          "code": "doc:create",
+          "category": "DOCUMENT",
+          "name_lo": "ສ້າງເອກະສານ",
+          "name_en": "Create Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-edit",
+          "code": "doc:edit",
+          "category": "DOCUMENT",
+          "name_lo": "ແກ້ໄຂເອກະສານ",
+          "name_en": "Edit Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-delete",
+          "code": "doc:delete",
+          "category": "DOCUMENT",
+          "name_lo": "ລຶບເອກະສານ",
+          "name_en": "Delete Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-submit",
+          "code": "doc:submit",
+          "category": "DOCUMENT",
+          "name_lo": "ສົ່ງເອກະສານ",
+          "name_en": "Submit Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-approve",
+          "code": "doc:approve",
+          "category": "WORKFLOW",
+          "name_lo": "ອະນຸມັດເອກະສານ",
+          "name_en": "Approve Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-reject",
+          "code": "doc:reject",
+          "category": "WORKFLOW",
+          "name_lo": "ປະຕິເສດເອກະສານ",
+          "name_en": "Reject Documents",
+          "description": null
+        },
+        {
+          "id": "perm-doc-assign",
+          "code": "doc:assign",
+          "category": "WORKFLOW",
+          "name_lo": "ມອບໝາຍວຽກ",
+          "name_en": "Assign Tasks",
+          "description": null
+        },
+        {
+          "id": "perm-doc-download",
+          "code": "doc:download",
+          "category": "DOCUMENT",
+          "name_lo": "ດາວໂຫຼດເອກະສານ",
+          "name_en": "Download Files",
+          "description": null
+        },
+        {
+          "id": "perm-doc-export",
+          "code": "doc:export",
+          "category": "REPORT",
+          "name_lo": "ສົ່ງອອກຂໍ້ມູນ",
+          "name_en": "Export Reports",
+          "description": null
+        },
+        {
+          "id": "perm-users-manage",
+          "code": "users:manage",
+          "category": "ADMIN",
+          "name_lo": "ຈັດການຜູ້ໃຊ້ງານ",
+          "name_en": "Manage Users",
+          "description": null
+        },
+        {
+          "id": "perm-dept-manage",
+          "code": "dept:manage",
+          "category": "ADMIN",
+          "name_lo": "ຈັດການພະແນກ",
+          "name_en": "Manage Department",
+          "description": null
+        },
+        {
+          "id": "perm-audit-view",
+          "code": "audit:view",
+          "category": "SECURITY",
+          "name_lo": "ເບິ່ງບັນທຶກຄວາມປອດໄພ",
+          "name_en": "View Audit Logs",
+          "description": null
+        },
+        {
+          "id": "perm-settings-manage",
+          "code": "settings:manage",
+          "category": "ADMIN",
+          "name_lo": "ຕັ້ງຄ່າລະບົບ",
+          "name_en": "Manage Settings",
+          "description": null
+        }
+      ]
+    },
+    "role_permissions": {
+      "schema": "CREATE TABLE role_permissions (\n    role_id TEXT NOT NULL,\n    permission_id TEXT NOT NULL,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    PRIMARY KEY (role_id, permission_id),\n    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,\n    FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE\n)",
+      "count": 37,
+      "rows": [
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-create",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-edit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-delete",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-submit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-approve",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-reject",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-assign",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-download",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-doc-export",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-users-manage",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-dept-manage",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-audit-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-super-admin",
+          "permission_id": "perm-settings-manage",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-create",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-edit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-delete",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-submit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-approve",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-reject",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-assign",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-download",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-doc-export",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-admin",
+          "permission_id": "perm-dept-manage",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-staff",
+          "permission_id": "perm-doc-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-staff",
+          "permission_id": "perm-doc-create",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-staff",
+          "permission_id": "perm-doc-edit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-staff",
+          "permission_id": "perm-doc-submit",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-dept-staff",
+          "permission_id": "perm-doc-download",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-approver",
+          "permission_id": "perm-doc-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-approver",
+          "permission_id": "perm-doc-approve",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-approver",
+          "permission_id": "perm-doc-reject",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-approver",
+          "permission_id": "perm-doc-download",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-executive-viewer",
+          "permission_id": "perm-doc-view",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-executive-viewer",
+          "permission_id": "perm-doc-download",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "role_id": "role-executive-viewer",
+          "permission_id": "perm-doc-export",
+          "created_at": "2026-11-06 07:12:48"
+        }
+      ]
+    },
+    "users": {
+      "schema": "CREATE TABLE users (\n    id TEXT PRIMARY KEY,\n    org_id TEXT NOT NULL,\n    dept_id TEXT,\n    position_id TEXT,\n    email TEXT NOT NULL UNIQUE,\n    password_hash TEXT NOT NULL,\n    full_name_lo TEXT NOT NULL,\n    full_name_en TEXT NOT NULL,\n    phone TEXT,\n    avatar_url TEXT,\n    status TEXT NOT NULL DEFAULT 'ACTIVE' CHECK(status IN ('ACTIVE', 'PENDING_ACTIVATION', 'SUSPENDED', 'LOCKED')),\n    must_change_password INTEGER NOT NULL DEFAULT 0,\n    mfa_enabled INTEGER NOT NULL DEFAULT 0,\n    mfa_secret TEXT,\n    failed_login_attempts INTEGER NOT NULL DEFAULT 0,\n    locked_until DATETIME,\n    last_login_at DATETIME,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (org_id) REFERENCES organizations(id) ON DELETE CASCADE,\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE SET NULL,\n    FOREIGN KEY (position_id) REFERENCES positions(id) ON DELETE SET NULL\n)",
+      "count": 2,
+      "rows": [
+        {
+          "id": "user-superadmin-001",
+          "org_id": "org-lhse-main",
+          "dept_id": null,
+          "position_id": null,
+          "email": "nokohn@gmail.com",
+          "password_hash": "$2b$10$qNQdIbI/i8KlNfapitBk0uxSt9SwDDkoAKqN/XjoJ5xzN5Bu04k7K",
+          "full_name_lo": "ຜູ້ບໍລິຫານລະບົບ LHSE (Super Admin)",
+          "full_name_en": "LHSE Super Administrator",
+          "phone": null,
+          "avatar_url": null,
+          "status": "ACTIVE",
+          "must_change_password": 0,
+          "mfa_enabled": 0,
+          "mfa_secret": null,
+          "failed_login_attempts": 0,
+          "locked_until": null,
+          "last_login_at": "2026-11-06 10:11:45",
+          "created_at": "2026-11-06 07:12:48",
+          "updated_at": "2026-11-06 08:35:58"
+        },
+        {
+          "id": "user-admin-adm_fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "position_id": null,
+          "email": "thipdavone.admin@lhse.gov.la",
+          "password_hash": "$2b$10$vxuflssQNlMwHi.q6tTVGeSycgLpkUNt/7qqfOioEnwT/7ALBDcmC",
+          "full_name_lo": "ນາງ ທິບດາວອນ",
+          "full_name_en": "Mrs. Thipdavone",
+          "phone": "+856 20 5551 2345",
+          "avatar_url": null,
+          "status": "ACTIVE",
+          "must_change_password": 1,
+          "mfa_enabled": 0,
+          "mfa_secret": null,
+          "failed_login_attempts": 0,
+          "locked_until": null,
+          "last_login_at": "2026-11-06 07:13:32",
+          "created_at": "2026-11-06 07:13:21",
+          "updated_at": "2026-11-06 07:13:21"
+        }
+      ]
+    },
+    "user_roles": {
+      "schema": "CREATE TABLE user_roles (\n    user_id TEXT NOT NULL,\n    role_id TEXT NOT NULL,\n    assigned_by TEXT,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    PRIMARY KEY (user_id, role_id),\n    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,\n    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE\n)",
+      "count": 2,
+      "rows": [
+        {
+          "user_id": "user-superadmin-001",
+          "role_id": "role-super-admin",
+          "assigned_by": "SYSTEM_BOOTSTRAP",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "user_id": "user-admin-adm_fin",
+          "role_id": "role-dept-admin",
+          "assigned_by": "user-superadmin-001",
+          "created_at": "2026-11-06 07:13:21"
+        }
+      ]
+    },
+    "user_invitations": {
+      "schema": "CREATE TABLE user_invitations (\n    id TEXT PRIMARY KEY,\n    org_id TEXT NOT NULL,\n    dept_id TEXT NOT NULL,\n    role_id TEXT NOT NULL,\n    designated_name TEXT NOT NULL,\n    email TEXT,\n    token_hash TEXT NOT NULL UNIQUE,\n    status TEXT NOT NULL DEFAULT 'PENDING' CHECK(status IN ('PENDING', 'ACCEPTED', 'EXPIRED', 'REVOKED')),\n    invited_by TEXT NOT NULL,\n    expires_at DATETIME NOT NULL,\n    accepted_at DATETIME,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (org_id) REFERENCES organizations(id) ON DELETE CASCADE,\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE CASCADE,\n    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE\n)",
+      "count": 5,
+      "rows": [
+        {
+          "id": "inv-adm_fin",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "role_id": "role-dept-admin",
+          "designated_name": "ນາງ ທິບດາວອນ",
+          "email": "thipdavone.admin@lhse.gov.la",
+          "token_hash": "46ecc1815cbe51ffd9d4f7473e60664f77da6e844c8832f8e3c1a7fcdd266f3a",
+          "status": "ACCEPTED",
+          "invited_by": "SYSTEM_BOOTSTRAP",
+          "expires_at": "2027-11-06T07:12:48.576Z",
+          "accepted_at": "2026-11-06 07:13:21",
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "inv-dev",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "role_id": "role-dept-admin",
+          "designated_name": "ນາງ ໜິງ",
+          "email": null,
+          "token_hash": "6d54f93520525a830285ba580e5431b46bb5c3b1b6b2ddcced59d20e7a629428",
+          "status": "PENDING",
+          "invited_by": "SYSTEM_BOOTSTRAP",
+          "expires_at": "2027-11-06T07:12:48.576Z",
+          "accepted_at": null,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "inv-bus_plan",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "role_id": "role-dept-admin",
+          "designated_name": "ສຸພາລັກ",
+          "email": null,
+          "token_hash": "c325ef71b7a4ac3ed66745d0236ebf7a9dd048da46b26793ed4a99987287991e",
+          "status": "PENDING",
+          "invited_by": "SYSTEM_BOOTSTRAP",
+          "expires_at": "2027-11-06T07:12:48.576Z",
+          "accepted_at": null,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "inv-fly_ash",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "role_id": "role-dept-admin",
+          "designated_name": "ທ້າວ ກິລິນທອນ",
+          "email": null,
+          "token_hash": "2988f1cb6bb4405f78ea6acd11bd3155cb823feef0cc3f7c0563417c8af8f702",
+          "status": "PENDING",
+          "invited_by": "SYSTEM_BOOTSTRAP",
+          "expires_at": "2027-11-06T07:12:48.576Z",
+          "accepted_at": null,
+          "created_at": "2026-11-06 07:12:48"
+        },
+        {
+          "id": "inv-int_audit",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "role_id": "role-dept-admin",
+          "designated_name": "ທ້າວ ວິລະປັນຍາ",
+          "email": null,
+          "token_hash": "8a5279d597719b362d376267359a2cd15ca49576e55d0ae3dc27e92f2190ba79",
+          "status": "PENDING",
+          "invited_by": "SYSTEM_BOOTSTRAP",
+          "expires_at": "2027-11-06T07:12:48.576Z",
+          "accepted_at": null,
+          "created_at": "2026-11-06 07:12:48"
+        }
+      ]
+    },
+    "document_number_sequences": {
+      "schema": "CREATE TABLE document_number_sequences (\n    id TEXT PRIMARY KEY,\n    dept_id TEXT NOT NULL,\n    doc_type TEXT NOT NULL CHECK(doc_type IN ('INCOMING', 'OUTGOING', 'INTERNAL')),\n    year INTEGER NOT NULL,\n    current_sequence INTEGER NOT NULL DEFAULT 0,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    UNIQUE(dept_id, doc_type, year),\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE CASCADE\n)",
+      "count": 1,
+      "rows": [
+        {
+          "id": "seq-dept-adm-fin-INCOMING-2026",
+          "dept_id": "dept-adm-fin",
+          "doc_type": "INCOMING",
+          "year": 2026,
+          "current_sequence": 8,
+          "created_at": "2026-11-06 08:55:12",
+          "updated_at": "2026-11-06 10:12:59"
+        }
+      ]
+    },
+    "documents": {
+      "schema": "CREATE TABLE documents (\n    id TEXT PRIMARY KEY,\n    org_id TEXT NOT NULL,\n    dept_id TEXT NOT NULL,\n    reg_number TEXT NOT NULL UNIQUE,\n    internal_ref TEXT,\n    doc_type TEXT NOT NULL CHECK(doc_type IN ('INCOMING', 'OUTGOING', 'INTERNAL')),\n    title TEXT NOT NULL,\n    summary TEXT,\n    sender TEXT,\n    recipient TEXT,\n    doc_date DATE NOT NULL,\n    received_date DATE,\n    priority TEXT NOT NULL DEFAULT 'NORMAL' CHECK(priority IN ('LOW', 'NORMAL', 'URGENT', 'VERY_URGENT')),\n    confidentiality TEXT NOT NULL DEFAULT 'INTERNAL' CHECK(confidentiality IN ('PUBLIC', 'INTERNAL', 'CONFIDENTIAL', 'HIGHLY_CONFIDENTIAL')),\n    workflow_status TEXT NOT NULL DEFAULT 'DRAFT' CHECK(workflow_status IN ('DRAFT', 'REGISTERED', 'ASSIGNED', 'IN_REVIEW', 'APPROVED', 'REJECTED', 'SIGNED', 'ARCHIVED', 'COMPLETED')),\n    current_step INTEGER NOT NULL DEFAULT 1,\n    creator_id TEXT NOT NULL,\n    responsible_user_id TEXT,\n    qr_token TEXT UNIQUE,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (org_id) REFERENCES organizations(id) ON DELETE CASCADE,\n    FOREIGN KEY (dept_id) REFERENCES departments(id) ON DELETE CASCADE,\n    FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE CASCADE\n)",
+      "count": 11,
+      "rows": [
+        {
+          "id": "doc-af-001",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "reg_number": "LHSE-AF/2026/001",
+          "internal_ref": "LHSE-AF/2026/001",
+          "doc_type": "INCOMING",
+          "title": "ບົດລາຍງານງົບປະມານປະຈຳໄຕຣມາດ 3/2026 ຈາກກະຊວງການເງິນ",
+          "summary": null,
+          "sender": "ກະຊວງການເງິນ",
+          "recipient": "ລັດວິສາຫະກິດຖືຮຸ້ນລາວ",
+          "doc_date": "2026-11-04",
+          "received_date": null,
+          "priority": "URGENT",
+          "confidentiality": "CONFIDENTIAL",
+          "workflow_status": "IN_REVIEW",
+          "current_step": 3,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-af-002",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "reg_number": "LHSE-AF/2026/002",
+          "internal_ref": "LHSE-AF/2026/002",
+          "doc_type": "OUTGOING",
+          "title": "ແຈ້ງການຊໍາລະພັນທະພາສີ-ອາກອນ ປະຈຳເດືອນ 10/2026",
+          "summary": null,
+          "sender": "ພະແນກບໍລິຫານ ບັນຊີ ແລະ ການເງິນ",
+          "recipient": "ກົມສ່ວຍສາອາກອນ",
+          "doc_date": "2026-11-02",
+          "received_date": null,
+          "priority": "NORMAL",
+          "confidentiality": "INTERNAL",
+          "workflow_status": "APPROVED",
+          "current_step": 4,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-af-003",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-adm-fin",
+          "reg_number": "LHSE-AF/2026/003",
+          "internal_ref": "LHSE-AF/2026/003",
+          "doc_type": "INTERNAL",
+          "title": "ແຈ້ງການສະຫຼຸບບັນຊີ ແລະ ວຽກງານບໍລິຫານທ້າຍປີ 2026",
+          "summary": null,
+          "sender": "ນາງ ທິບດາວອນ",
+          "recipient": "ທຸກພະແນກພາຍໃນ LHSE",
+          "doc_date": "2026-11-05",
+          "received_date": null,
+          "priority": "VERY_URGENT",
+          "confidentiality": "PUBLIC",
+          "workflow_status": "SIGNED",
+          "current_step": 5,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-dev-001",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "reg_number": "LHSE-DEV/2026/012",
+          "internal_ref": "LHSE-DEV/2026/012",
+          "doc_type": "INCOMING",
+          "title": "ບົດສະເໜີໂຄງການພະລັງງານແສງຕາເວັນ 50MW ເຂດພາກໃຕ້",
+          "summary": null,
+          "sender": "ກຸ່ມບໍລິສັດຮ່ວມທຶນພະລັງງານ",
+          "recipient": "ຄະນະອຳນວຍການ LHSE",
+          "doc_date": "2026-11-01",
+          "received_date": null,
+          "priority": "URGENT",
+          "confidentiality": "HIGHLY_CONFIDENTIAL",
+          "workflow_status": "IN_REVIEW",
+          "current_step": 3,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-dev-002",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-dev",
+          "reg_number": "LHSE-DEV/2026/013",
+          "internal_ref": "LHSE-DEV/2026/013",
+          "doc_type": "INTERNAL",
+          "title": "ບົດວິເຄາະຄວາມເປັນໄປໄດ້ທາງເສດຖະກິດໂຄງການລົງທຶນໃໝ່",
+          "summary": null,
+          "sender": "ນາງ ໜິງ",
+          "recipient": "ຜູ້ອຳນວຍການໃຫຍ່ LHSE",
+          "doc_date": "2026-10-28",
+          "received_date": null,
+          "priority": "NORMAL",
+          "confidentiality": "CONFIDENTIAL",
+          "workflow_status": "APPROVED",
+          "current_step": 4,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-bp-001",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "reg_number": "LHSE-BP/2026/005",
+          "internal_ref": "LHSE-BP/2026/005",
+          "doc_type": "INTERNAL",
+          "title": "ແຜນດຳເນີນທຸລະກິດ ແລະ ຄາດຄະເນລາຍຮັບ-ລາຍຈ່າຍ ປີ 2027",
+          "summary": null,
+          "sender": "ສຸພາລັກ",
+          "recipient": "ຄະນະອຳນວຍການ LHSE",
+          "doc_date": "2026-11-03",
+          "received_date": null,
+          "priority": "URGENT",
+          "confidentiality": "CONFIDENTIAL",
+          "workflow_status": "ASSIGNED",
+          "current_step": 2,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-bp-002",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-bus-plan",
+          "reg_number": "LHSE-BP/2026/006",
+          "internal_ref": "LHSE-BP/2026/006",
+          "doc_type": "OUTGOING",
+          "title": "ໜັງສືປະສານງານການຖືຮຸ້ນໃນໂຄງການເຂື່ອນໄຟຟ້ານໍ້າງື່ມ 2",
+          "summary": null,
+          "sender": "ພະແນກທຸລະກິດແຜນການ",
+          "recipient": "ຄະນະກຳມະການຮ່ວມທຶນ",
+          "doc_date": "2026-10-20",
+          "received_date": null,
+          "priority": "NORMAL",
+          "confidentiality": "INTERNAL",
+          "workflow_status": "COMPLETED",
+          "current_step": 6,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-fa-001",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "reg_number": "LHSE-FA/2026/044",
+          "internal_ref": "LHSE-FA/2026/044",
+          "doc_type": "OUTGOING",
+          "title": "ສັນຍາຊື້-ຂາຍຜະລິດຕະພັນຂີ້ເທົ່າລອຍ ໂຄງການໄຟຟ້າຫົງສາ ໄຕຣມາດ 4",
+          "summary": null,
+          "sender": "ທ້າວ ກິລິນທອນ",
+          "recipient": "ບໍລິສັດ ຜະລິດຊີມັງ ລາວ",
+          "doc_date": "2026-11-04",
+          "received_date": null,
+          "priority": "VERY_URGENT",
+          "confidentiality": "CONFIDENTIAL",
+          "workflow_status": "COMPLETED",
+          "current_step": 4,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 08:58:36"
+        },
+        {
+          "id": "doc-fa-002",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-fly-ash",
+          "reg_number": "LHSE-FA/2026/045",
+          "internal_ref": "LHSE-FA/2026/045",
+          "doc_type": "INCOMING",
+          "title": "ໃບສັ່ງຊື້ຂີ້ເທົ່າລອຍລວງໜ້າ ປະຈຳເດືອນ 11/2026",
+          "summary": null,
+          "sender": "ຄູ່ຄ້າພາຍໃນປະເທດ",
+          "recipient": "ພະແນກທຸລະກິດຂີ້ເທົ່າລອຍ",
+          "doc_date": "2026-11-05",
+          "received_date": null,
+          "priority": "NORMAL",
+          "confidentiality": "INTERNAL",
+          "workflow_status": "REGISTERED",
+          "current_step": 1,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-ia-001",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "reg_number": "LHSE-IA/2026/008",
+          "internal_ref": "LHSE-IA/2026/008",
+          "doc_type": "INTERNAL",
+          "title": "ບົດລາຍງານຜົນການກວດສອບພາຍໃນ ການນຳໃຊ້ງົບປະມານ 6 ເດືອນຕົ້ນປີ",
+          "summary": null,
+          "sender": "ທ້າວ ວິລະປັນຍາ",
+          "recipient": "ຄະນະກວດກາ LHSE",
+          "doc_date": "2026-10-15",
+          "received_date": null,
+          "priority": "VERY_URGENT",
+          "confidentiality": "HIGHLY_CONFIDENTIAL",
+          "workflow_status": "COMPLETED",
+          "current_step": 6,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        },
+        {
+          "id": "doc-ia-002",
+          "org_id": "org-lhse-main",
+          "dept_id": "dept-int-audit",
+          "reg_number": "LHSE-IA/2026/009",
+          "internal_ref": "LHSE-IA/2026/009",
+          "doc_type": "INTERNAL",
+          "title": "ແຜນການລົງກວດສອບສາງ ແລະ ການຈັດສົ່ງຜະລິດຕະພັນຂີ້ເທົ່າລອຍ",
+          "summary": null,
+          "sender": "ພະແນກກວດສອບພາຍໃນ",
+          "recipient": "ພະແນກທຸລະກິດຂີ້ເທົ່າລອຍ",
+          "doc_date": "2026-11-02",
+          "received_date": null,
+          "priority": "NORMAL",
+          "confidentiality": "CONFIDENTIAL",
+          "workflow_status": "IN_REVIEW",
+          "current_step": 3,
+          "creator_id": "user-superadmin-001",
+          "responsible_user_id": null,
+          "qr_token": null,
+          "created_at": "2026-11-06 07:25:37",
+          "updated_at": "2026-11-06 07:25:37"
+        }
+      ]
+    },
+    "document_attachments": {
+      "schema": "CREATE TABLE document_attachments (\n    id TEXT PRIMARY KEY,\n    doc_id TEXT NOT NULL,\n    file_name TEXT NOT NULL,\n    file_type TEXT NOT NULL,\n    file_size INTEGER NOT NULL,\n    storage_key TEXT NOT NULL,\n    content_sha256 TEXT NOT NULL,\n    version INTEGER NOT NULL DEFAULT 1,\n    uploader_id TEXT NOT NULL,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE,\n    FOREIGN KEY (uploader_id) REFERENCES users(id) ON DELETE CASCADE\n)",
+      "count": 0,
+      "rows": []
+    },
+    "document_versions": {
+      "schema": "CREATE TABLE document_versions (\n    id TEXT PRIMARY KEY,\n    doc_id TEXT NOT NULL,\n    version_number INTEGER NOT NULL,\n    title TEXT NOT NULL,\n    summary TEXT,\n    changed_by TEXT NOT NULL,\n    change_summary TEXT NOT NULL,\n    file_attachment_id TEXT,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE,\n    FOREIGN KEY (changed_by) REFERENCES users(id) ON DELETE CASCADE,\n    FOREIGN KEY (file_attachment_id) REFERENCES document_attachments(id) ON DELETE SET NULL\n)",
+      "count": 0,
+      "rows": []
+    },
+    "document_workflow_steps": {
+      "schema": "CREATE TABLE document_workflow_steps (\n    id TEXT PRIMARY KEY,\n    doc_id TEXT NOT NULL,\n    step_number INTEGER NOT NULL,\n    step_name_lo TEXT NOT NULL,\n    step_name_en TEXT NOT NULL,\n    assignee_user_id TEXT,\n    assignee_role TEXT NOT NULL,\n    action TEXT NOT NULL DEFAULT 'PENDING' CHECK(action IN ('PENDING', 'APPROVED', 'REJECTED', 'RETURNED_FOR_REVISION', 'ASSIGNED', 'SUBMITTED', 'SIGNED')),\n    comments TEXT,\n    acted_at DATETIME,\n    deadline_at DATETIME,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE,\n    FOREIGN KEY (assignee_user_id) REFERENCES users(id) ON DELETE SET NULL\n)",
+      "count": 1,
+      "rows": [
+        {
+          "id": "step-1793955516640",
+          "doc_id": "doc-fa-001",
+          "step_number": 1,
+          "step_name_lo": "ລົງລາຍເຊັນເອເລັກໂຕຣນິກ",
+          "step_name_en": "E-Signature Completed",
+          "assignee_user_id": "user-superadmin-001",
+          "assignee_role": "SIGNER",
+          "action": "SIGNED",
+          "comments": "Authorized by Super Admin",
+          "acted_at": "2026-11-06 08:58:36",
+          "deadline_at": null,
+          "created_at": "2026-11-06 08:58:36"
+        }
+      ]
+    },
+    "document_signatures": {
+      "schema": "CREATE TABLE document_signatures (\n    id TEXT PRIMARY KEY,\n    doc_id TEXT NOT NULL,\n    signer_user_id TEXT NOT NULL,\n    signer_name_lo TEXT NOT NULL,\n    signer_name_en TEXT NOT NULL,\n    signer_title TEXT NOT NULL,\n    signature_type TEXT NOT NULL CHECK(signature_type IN ('DRAWN', 'UPLOADED_STAMP', 'DIGITAL_SEAL')),\n    signature_data TEXT NOT NULL,\n    document_sha256 TEXT NOT NULL,\n    verification_token TEXT NOT NULL UNIQUE,\n    signed_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    ip_address TEXT,\n    is_valid INTEGER NOT NULL DEFAULT 1,\n    FOREIGN KEY (doc_id) REFERENCES documents(id) ON DELETE CASCADE,\n    FOREIGN KEY (signer_user_id) REFERENCES users(id) ON DELETE CASCADE\n)",
+      "count": 1,
+      "rows": [
+        {
+          "id": "sig-1793955516640-811",
+          "doc_id": "doc-fa-001",
+          "signer_user_id": "user-superadmin-001",
+          "signer_name_lo": "ຜູ້ບໍລິຫານລະບົບ LHSE (Super Admin)",
+          "signer_name_en": "LHSE Super Administrator",
+          "signer_title": "SUPER_ADMIN",
+          "signature_type": "DRAWN",
+          "signature_data": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==",
+          "document_sha256": "c3d76d411c7b00c529418744e0156b7cacfc5c9a17a73a66a7994ad0c0225221",
+          "verification_token": "LHSE-VERIFY-E9C49FCF4DF8A5B95253C2762264EA2622C6",
+          "signed_at": "2026-11-06 08:58:36",
+          "ip_address": "127.0.0.1",
+          "is_valid": 1
+        }
+      ]
+    },
+    "notifications": {
+      "schema": "CREATE TABLE notifications (\n    id TEXT PRIMARY KEY,\n    user_id TEXT NOT NULL,\n    title_lo TEXT NOT NULL,\n    title_en TEXT NOT NULL,\n    message_lo TEXT NOT NULL,\n    message_en TEXT NOT NULL,\n    type TEXT NOT NULL DEFAULT 'INFO' CHECK(type IN ('INFO', 'APPROVAL_REQUEST', 'DOCUMENT_APPROVED', 'DOCUMENT_REJECTED', 'REVISION_REQUESTED', 'DEADLINE_ALERT', 'SIGNATURE_COMPLETED')),\n    entity_type TEXT DEFAULT 'DOCUMENT',\n    entity_id TEXT,\n    is_read INTEGER NOT NULL DEFAULT 0,\n    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE\n)",
+      "count": 1,
+      "rows": [
+        {
+          "id": "notif-1793959916754-960",
+          "user_id": "user-superadmin-001",
+          "title_lo": "ທົດສອບການແຈ້ງເຕືອນ Real-Time",
+          "title_en": "Real-Time Test Notification",
+          "message_lo": "ທົດສອບການສົ່ງແຈ້ງເຕືອນອັດຕະໂນມັດເມື່ອມີການມອບໝາຍ ຫຼື ອະນຸມັດເອກະສານ",
+          "message_en": "Test notification for automated real-time alerts",
+          "type": "INFO",
+          "entity_type": "DOCUMENT",
+          "entity_id": "doc-test-123",
+          "is_read": 0,
+          "created_at": "2026-11-06 10:11:56"
+        }
+      ]
+    }
+  }
+}
